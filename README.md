@@ -28,7 +28,7 @@ There are some additional support scripts in the directory:
 License
 -------
 
-This software is licensed under the MIT License.  For details, see [LICENSE.txt](https://github.com/lwe-frodo/lwe-frodo/blob/master/LICENSE.txt).
+This software is licensed under the MIT License.  For details, see [LICENSE.txt](https://github.com/lwe-frodo/parameter-selection/blob/master/LICENSE.txt).
 
 Acknowledgements
 ----------------
