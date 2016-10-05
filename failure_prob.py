@@ -86,21 +86,18 @@ def print_failure_props(noise, qlog, n, w, agree_bits=256):
 
     print "p = 2^{}, n = {}, B = {}, |key| = {},".format(qlog, n, w, agree_bits),
     print "exact pr of failure = 2^{:.2f}".format(log(noise_failure_prob(noise, 2 ** qlog, n, w, reclen), 2)),
-    print "(heuristic = 2^{:.2f})".format(log(heuristic_failure_prob_loose(2 ** qlog, n, s, w, reclen), 2))
+    print "(heuristic = 2^{:.2f})".format(log(heuristic_failure_prob_upper(2 ** qlog, n, s, w, reclen), 2))
     print
 
 
 def main():
     d1 = {0: 44 / 128., 1: 61 / 128., 2: 20 / 128., 3: 3. / 128}
     sym_d1 = pdf_product(d1, {+1: .5, -1: .5})
-    # Parameters with deliberately large probability of failure
-    print "Distribution = D1:",
+    print "Parameters leading to deliberately large probability of failure (for testing purposes):"
+    print "Distribution = D1,",
     print_failure_props(sym_d1, 10, 320, 1, 64)
 
-    dg175 = dgauss(sqrt(1.75))
-    print "Distribution = rounded Gaussian with sigma^2 = 1.75:",
-    print_failure_props(dg175, 15, 752, 4, 256)
-
+    print "Recommended parameters:"
     d3 = {
         0: 603 / 2048.,
         1: 919 / 2048.,
@@ -109,8 +106,13 @@ def main():
         4: 15 / 2048.,
         5: 1 / 2048.}
     sym_d3 = pdf_product(d3, {+1: .5, -1: .5})
-    print "Recommended parameters:",
+    print "Distribution = D3,",
     print_failure_props(sym_d3, 15, 752, 4, 256)
+
+    print "Parameters similar to recommended, distribution is different:"
+    dg175 = dgauss(sqrt(1.75))
+    print "Distribution = rounded Gaussian with sigma^2 = 1.75,",
+    print_failure_props(dg175, 15, 752, 4, 256)
 
 
 if __name__ == "__main__":
